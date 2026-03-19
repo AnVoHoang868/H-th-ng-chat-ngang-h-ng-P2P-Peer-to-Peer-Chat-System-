@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>🚀 P2P Chat System - Project Dashboard</title>
+</head>
+<body>
+
+<h1>🚀 P2P Chat System — Project Dashboard</h1>
+<p><strong>Đồ án:</strong> Hệ thống Chat ngang hàng P2P (Peer-to-Peer Chat System)<br>
+<strong>Môn học:</strong> Hệ thống phân tán<br>
+<strong>Thành viên:</strong> An, Duy, Trung<br>
+<strong>Ngày bắt đầu:</strong> 18/03/2026<br>
+<strong>Công nghệ:</strong> Node.js, TypeScript, Express, Socket.io</p>
+
+<hr>
+
+<h2>📋 Bảng Công Việc Tổng Thể</h2>
+
+<h3>🔵 Tuần 1 (18/03 – 24/03): Thiết Kế &amp; Nền Tảng</h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Người phụ trách</th>
+<th>Trạng thái</th>
+<th>Ưu tiên</th>
+<th>Ghi chú</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Thiết kế kiến trúc tổng thể &amp; giao thức message</td>
+<td>Cả nhóm</td>
+<td>To Do</td>
+<td>🔴 High</td>
+<td>Họp nhóm thống nhất sơ đồ kiến trúc, vẽ diagram</td>
+</tr>
+<tr>
+<td>Setup dự án: package.json, tsconfig.json, cấu trúc thư mục</td>
+<td>An</td>
+<td>To Do</td>
+<td>🔴 High</td>
+<td>Khởi tạo Node.js + TypeScript + Express + Socket.io</td>
+</tr>
+<tr>
+<td>Định nghĩa Interfaces/Types chung (shared/types.ts)</td>
+<td>An</td>
+<td>To Do</td>
+<td>🔴 High</td>
+<td>IPeer, IDirectMessage, IGroupMessage, SocketEvents enum</td>
+</tr>
+<tr>
+<td>Xây dựng Bootstrap Server cơ bản</td>
+<td>Duy</td>
+<td>To Do</td>
+<td>🔴 High</td>
+<td>Register peer, lưu danh sách, trả peer list</td>
+</tr>
+<tr>
+<td>Xây dựng Peer Node cơ bản (TCP kết nối, gửi/nhận)</td>
+<td>Trung</td>
+<td>To Do</td>
+<td>🔴 High</td>
+<td>Peer vừa là Server vừa là Client, kết nối Bootstrap</td>
+</tr>
+<tr>
+<td>Review code &amp; tích hợp Peer ↔ Server lần 1</td>
+<td>Cả nhóm</td>
+<td>To Do</td>
+<td>🟡 Medium</td>
+<td>Test kết nối cơ bản giữa peer và bootstrap</td>
+</tr>
+</tbody>
+</table>
+
+<h3>🟢 Tuần 2 (25/03 – 31/03): Chat 1-1 &amp; Peer Discovery</h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Người phụ trách</th>
+<th>Trạng thái</th>
+<th>Ưu tiên</th>
+<th>Ghi chú</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chat 1-1: gửi tin nhắn trực tiếp giữa 2 Peer</td>
+<td>Trung</td>
+<td>To Do</td>
+<td>🔴 High</td>
+<td>Direct message qua Socket.io, kết nối Peer-to-Peer</td>
+</tr>
+<tr>
+<td>Cơ chế ACK xác nhận đã nhận tin nhắn</td>
+<td>Trung</td>
+<td>To Do</td>
+<td>🔴 High</td>
+<td>Callback acknowledgement từ Socket.io</td>
+</tr>
+<tr>
+<td>Peer Discovery: tự tìm peer qua Bootstrap Server</td>
+<td>Duy</td>
+<td>To Do</td>
+<td>🔴 High</td>
+<td>Peer mới tự động nhận danh sách peer online</td>
+</tr>
+<tr>
+<td>Online/Offline status: Heartbeat mechanism</td>
+<td>Duy</td>
+<td>To Do</td>
+<td>🔴 High</td>
+<td>Ping/pong định kỳ, detect disconnect</td>
+</tr>
+<tr>
+<td>Reliable messaging: Retry khi timeout, message queue</td>
+<td>An</td>
+<td>To Do</td>
+<td>🔴 High</td>
+<td>Retry 3 lần, exponential backoff, pending queue</td>
+</tr>
+<tr>
+<td>Test tích hợp Chat 1-1 end-to-end</td>
+<td>Cả nhóm</td>
+<td>To Do</td>
+<td>🟡 Medium</td>
+<td>Mở 3 terminal, 1 server + 2 peer, test gửi/nhận</td>
+</tr>
+</tbody>
+</table>
+
+<h3>🟠 Tuần 3 (01/04 – 07/04): Chat Nhóm &amp; Xử Lý Lỗi</h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Người phụ trách</th>
+<th>Trạng thái</th>
+<th>Ưu tiên</th>
+<th>Ghi chú</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Group Manager: tạo nhóm, thêm/xóa thành viên</td>
+<td>An</td>
+<td>To Do</td>
+<td>🔴 High</td>
+<td>IGroupChat interface, join/leave group events</td>
+</tr>
+<tr>
+<td>Group Messaging: phát tin nhắn tới tất cả member</td>
+<td>Trung</td>
+<td>To Do</td>
+<td>🔴 High</td>
+<td>Dùng Socket.io rooms hoặc manual broadcast</td>
+</tr>
+<tr>
+<td>Xử lý lỗi: peer disconnect, reconnect logic</td>
+<td>Duy</td>
+<td>To Do</td>
+<td>🔴 High</td>
+<td>Auto-reconnect, cleanup stale connections</td>
+</tr>
+<tr>
+<td>Message retry khi peer không phản hồi</td>
+<td>Duy</td>
+<td>To Do</td>
+<td>🔴 High</td>
+<td>Timeout detection, retry with backoff</td>
+</tr>
+<tr>
+<td>[BONUS] Broadcast message toàn mạng</td>
+<td>Trung</td>
+<td>To Do</td>
+<td>🟢 Low</td>
+<td>Flooding hoặc gossip protocol đơn giản</td>
+</tr>
+<tr>
+<td>Test chat nhóm &amp; xử lý edge cases</td>
+<td>Cả nhóm</td>
+<td>To Do</td>
+<td>🟡 Medium</td>
+<td>Test tạo nhóm, gửi tin, 1 peer rời nhóm đột ngột</td>
+</tr>
+</tbody>
+</table>
+
+<h3>🟣 Tuần 4 (08/04 – 14/04): Tính Năng Nâng Cao &amp; GUI</h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Người phụ trách</th>
+<th>Trạng thái</th>
+<th>Ưu tiên</th>
+<th>Ghi chú</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[BONUS] Store-and-forward: lưu tin khi peer offline</td>
+<td>An</td>
+<td>To Do</td>
+<td>🟡 Medium</td>
+<td>Lưu vào queue trên server/peer, gửi khi reconnect</td>
+</tr>
+<tr>
+<td>[BONUS] Mã hóa tin nhắn (Encryption)</td>
+<td>Duy</td>
+<td>To Do</td>
+<td>🟡 Medium</td>
+<td>AES hoặc Fernet, encrypt trước khi gửi</td>
+</tr>
+<tr>
+<td>[BONUS] Giao diện Web UI</td>
+<td>Trung</td>
+<td>To Do</td>
+<td>🟡 Medium</td>
+<td>HTML/CSS/JS + Socket.io client, chat box UI</td>
+</tr>
+<tr>
+<td>Tích hợp Web UI với Peer backend</td>
+<td>Trung + An</td>
+<td>To Do</td>
+<td>🟡 Medium</td>
+<td>Serve static file qua Express, kết nối Socket</td>
+</tr>
+<tr>
+<td>Test toàn bộ hệ thống end-to-end</td>
+<td>Cả nhóm</td>
+<td>To Do</td>
+<td>🔴 High</td>
+<td>Chạy multi-peer, test mọi tính năng, ghi log</td>
+</tr>
+</tbody>
+</table>
+
+<h3>🔴 Tuần 5 (15/04 – 21/04): Hoàn Thiện &amp; Báo Cáo</h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Người phụ trách</th>
+<th>Trạng thái</th>
+<th>Ưu tiên</th>
+<th>Ghi chú</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fix bugs, polish code, thêm comments</td>
+<td>Cả nhóm</td>
+<td>To Do</td>
+<td>🔴 High</td>
+<td>Code review chéo, refactor, thêm JSDoc</td>
+</tr>
+<tr>
+<td>Viết báo cáo: Kiến trúc hệ thống</td>
+<td>An</td>
+<td>To Do</td>
+<td>🔴 High</td>
+<td>Sơ đồ kiến trúc, component diagram, sequence diagram</td>
+</tr>
+<tr>
+<td>Viết báo cáo: Giao thức &amp; Peer Discovery</td>
+<td>Duy</td>
+<td>To Do</td>
+<td>🔴 High</td>
+<td>Mô tả message protocol, peer discovery flow</td>
+</tr>
+<tr>
+<td>Viết báo cáo: Xử lý lỗi &amp; Kết quả test</td>
+<td>Trung</td>
+<td>To Do</td>
+<td>🔴 High</td>
+<td>Screenshots test, bảng kết quả, phân tích</td>
+</tr>
+<tr>
+<td>Viết README.md &amp; Hướng dẫn cài đặt + chạy</td>
+<td>An</td>
+<td>To Do</td>
+<td>🔴 High</td>
+<td>Install guide, cách chạy server/peer, demo</td>
+</tr>
+<tr>
+<td>Chuẩn bị Demo: quay video hoặc live demo</td>
+<td>Cả nhóm</td>
+<td>To Do</td>
+<td>🟡 Medium</td>
+<td>Quay OBS hoặc chuẩn bị kịch bản demo live</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>👥 Phân Công Theo Thành Viên</h2>
+
+<h3>👤 An — Kiến Trúc Sư &amp; Giao Thức</h3>
+<table>
+<thead>
+<tr><th>Mảng</th><th>Công việc cụ thể</th></tr>
+</thead>
+<tbody>
+<tr><td>Protocol Layer</td><td>Thiết kế &amp; code shared/types.ts, message interfaces</td></tr>
+<tr><td>Reliable Messaging</td><td>ACK, retry logic, message queue, timeout handling</td></tr>
+<tr><td>Group Manager</td><td>Tạo/xóa nhóm, quản lý member list</td></tr>
+<tr><td>Store-and-forward</td><td>[BONUS] Lưu tin nhắn offline, gửi khi peer reconnect</td></tr>
+<tr><td>Báo cáo</td><td>Kiến trúc hệ thống + README hướng dẫn chạy</td></tr>
+</tbody>
+</table>
+
+<h3>👤 Duy — Network &amp; Discovery</h3>
+<table>
+<thead>
+<tr><th>Mảng</th><th>Công việc cụ thể</th></tr>
+</thead>
+<tbody>
+<tr><td>Bootstrap Server</td><td>Toàn bộ server: register, unregister, peer list</td></tr>
+<tr><td>Peer Discovery</td><td>Logic tìm peer, cập nhật danh sách tự động</td></tr>
+<tr><td>Online/Offline</td><td>Heartbeat mechanism, trạng thái peer</td></tr>
+<tr><td>Xử lý lỗi</td><td>Disconnect detection, reconnect, fault tolerance</td></tr>
+<tr><td>Mã hóa</td><td>[BONUS] Encryption/decryption tin nhắn</td></tr>
+<tr><td>Báo cáo</td><td>Giao thức trao đổi &amp; peer discovery</td></tr>
+</tbody>
+</table>
+
+<h3>👤 Trung — Messaging &amp; Giao Diện</h3>
+<table>
+<thead>
+<tr><th>Mảng</th><th>Công việc cụ thể</th></tr>
+</thead>
+<tbody>
+<tr><td>Peer Node</td><td>Core peer: TCP server/client, connection manager</td></tr>
+<tr><td>Chat 1-1</td><td>Direct messaging giữa 2 peer + ACK</td></tr>
+<tr><td>Chat nhóm</td><td>Phát tin nhắn đến group members</td></tr>
+<tr><td>Broadcast</td><td>[BONUS] Broadcast toàn mạng</td></tr>
+<tr><td>GUI/Web</td><td>[BONUS] Xây dựng giao diện Web UI</td></tr>
+<tr><td>Báo cáo</td><td>Xử lý lỗi &amp; kết quả thử nghiệm</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>📅 Timeline Tổng Quan</h2>
+<table>
+<thead>
+<tr>
+<th>Tuần</th>
+<th>Thời gian</th>
+<th>Mục tiêu chính</th>
+<th>Milestone</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tuần 1</td>
+<td>18/03 – 24/03</td>
+<td>Thiết kế &amp; Nền tảng</td>
+<td>✅ Server chạy được, Peer kết nối được với Server</td>
+</tr>
+<tr>
+<td>Tuần 2</td>
+<td>25/03 – 31/03</td>
+<td>Chat 1-1 &amp; Peer Discovery</td>
+<td>✅ 2 Peer chat trực tiếp được, có ACK</td>
+</tr>
+<tr>
+<td>Tuần 3</td>
+<td>01/04 – 07/04</td>
+<td>Chat Nhóm &amp; Xử lý lỗi</td>
+<td>✅ Chat nhóm hoạt động, xử lý disconnect</td>
+</tr>
+<tr>
+<td>Tuần 4</td>
+<td>08/04 – 14/04</td>
+<td>Tính năng Bonus &amp; GUI</td>
+<td>✅ Web UI hoạt động, mã hóa, offline msg</td>
+</tr>
+<tr>
+<td>Tuần 5</td>
+<td>15/04 – 21/04</td>
+<td>Hoàn thiện &amp; Báo cáo</td>
+<td>✅ Nộp code + báo cáo + demo</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>⚙️ Quy Ước Nhóm</h2>
+<ul>
+<li><strong>Họp nhóm:</strong> Comment tiến độ trước 10h tối mỗi ngày trên nhóm chat hoặc Notion.</li>
+<li><strong>Code Convention:</strong> Đặt tên biến, hàm theo camelCase. Tên file dùng kebab-case.</li>
+<li><strong>Git Flow:</strong> Không code trực tiếp vào nhánh main. Tạo branch theo format: <code>feature/ten-tinh-nang</code> hoặc <code>bugfix/ten-bug</code>.</li>
+<li><strong>Review:</strong> Mỗi Pull Request cần ít nhất 1 người review trước khi merge.</li>
+</ul>
+
+<hr>
+
+<h2>🔗 Liên Kết Quan Trọng</h2>
+<ul>
+<li><strong>Github Repository:</strong> (chưa tạo)</li>
+<li><strong>Tài liệu đề bài:</strong> Chủ đề 3 — Phát triển hệ thống chat ngang hàng P2P</li>
+<li><strong>Stack:</strong> Node.js + TypeScript + Express + Socket.io</li>
+</ul>
+
+</body>
+</html>

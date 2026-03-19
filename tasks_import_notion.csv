@@ -1,0 +1,22 @@
+Task Name,Assignee,Status,Priority,Timeline,Category
+Thiết kế kiến trúc hệ thống,Cả nhóm,To Do,High,Tuần 1,Architecture
+Định nghĩa giao thức tin nhắn (JSON) & cấu trúc dữ liệu,An,To Do,High,Tuần 1,Backend
+Xây dựng Bootstrap Server (Đăng ký/Lấy danh sách Peer),Duy,To Do,High,Tuần 1,Backend
+Xây dựng Peer Node (Kết nối TCP gửi/nhận),Trung,To Do,High,Tuần 1,Backend
+Tính năng Chat 1-1 (Direct direct message + ACK),Trung,To Do,High,Tuần 2,Core Feature
+Cơ chế tự động khám phá Peer (Peer Discovery),Duy,To Do,High,Tuần 2,Core Feature
+Quản lý trạng thái Online/Offline (Heartbeat),Duy,To Do,High,Tuần 2,Core Feature
+Xử lý truyền tin đáng tin cậy (Retry & Timeout),An,To Do,High,Tuần 2,Core Feature
+Quản lý Chat Nhóm (Tạo nhóm & thêm thành viên),An,To Do,Medium,Tuần 3,Core Feature
+Tính năng gửi tin nhắn Chat Nhóm,Trung,To Do,High,Tuần 3,Core Feature
+Xử lý lỗi: mất kết nối, tự động kết nối lại,Duy,To Do,High,Tuần 3,Testing/Fixing
+Tính năng nâng cao: Gửi Broadcast toàn mạng,Trung,To Do,Low,Tuần 3,Bonus Feature
+Tính năng nâng cao: Lưu và gửi lại tin offline (Store-and-forward),An,To Do,Medium,Tuần 4,Bonus Feature
+Tính năng nâng cao: Mã hóa tin nhắn cơ bản,Duy,To Do,Medium,Tuần 4,Bonus Feature
+Tính năng nâng cao: Xây dựng giao diện GUI/Web UI,Trung,To Do,Medium,Tuần 4,Bonus Feature
+Kiểm thử toàn bộ hệ thống (End-to-end Test),Cả nhóm,To Do,High,Tuần 5,Testing/Fixing
+Viết báo cáo (Kiến trúc hệ thống),An,To Do,High,Tuần 5,Documentation
+Viết báo cáo (Giao thức & Peer Discovery),Duy,To Do,High,Tuần 5,Documentation
+Viết báo cáo (Xử lý lỗi & Thử nghiệm),Trung,To Do,High,Tuần 5,Documentation
+Viết README & Hướng dẫn sử dụng,An,To Do,High,Tuần 5,Documentation
+Chuẩn bị Demo / Quay video,Cả nhóm,To Do,Medium,Tuần 5,Documentation
