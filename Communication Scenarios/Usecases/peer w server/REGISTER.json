@@ -1,0 +1,15 @@
+1. Usecase: Tham gia mạng P2P (REGISTER)
+Mô tả: Peer gửi thông tin của mình lên Bootstrap Server để đăng ký tham gia mạng.
+Luồng: Peer -> Bootstrap Server.
+{
+    "version": "1.0",
+    "type": "REGISTER",
+    "senderId": "peer_01",
+    "timestamp": 1710750000,
+    "messageId": "msg_001",
+    "payload": {
+        "username": "DungIT",
+        "ip": "[IP_ADDRESS]",
+        "port": 8080
+    }
+}
