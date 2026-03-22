@@ -32,14 +32,6 @@ export default function TopNavBar() {
         </nav>
       </div>
       <div className="flex items-center gap-4">
-        <div className="relative hidden sm:block">
-          <input
-            className="bg-surface-container-high border-none rounded-xl py-1.5 px-4 text-xs focus:ring-1 focus:ring-primary outline-none w-64 text-on-surface placeholder:text-outline"
-            placeholder="Tìm kiếm..."
-            type="text"
-          />
-          <span className="material-symbols-outlined absolute right-3 top-1.5 text-lg text-outline">search</span>
-        </div>
         <div className="flex items-center gap-3">
           <button className="text-slate-400 hover:text-indigo-300 transition-colors">
             <span className="material-symbols-outlined">notifications</span>

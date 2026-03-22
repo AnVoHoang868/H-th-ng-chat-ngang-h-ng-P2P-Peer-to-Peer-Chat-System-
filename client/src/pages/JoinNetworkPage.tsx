@@ -1,20 +1,38 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import socketService from '../services/socketService'
 
 export default function JoinNetworkPage() {
   const navigate = useNavigate()
   const [username, setUsername] = useState('')
-  const [bootstrapIp, setBootstrapIp] = useState('127.0.0.1')
-  const [port, setPort] = useState('8080')
-  const [status, setStatus] = useState<'idle' | 'connecting' | 'connected'>('idle')
+  const [bootstrapIp, setBootstrapIp] = useState('localhost')
+  const [port, setPort] = useState('4000')
+  const [status, setStatus] = useState<'idle' | 'connecting' | 'connected' | 'error'>('idle')
+  const [errorMsg, setErrorMsg] = useState('')
 
-  const handleConnect = (e: React.FormEvent) => {
+  const handleConnect = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    // Validate inputs
+    if (!username.trim() || !bootstrapIp.trim() || !port.toString().trim()) {
+      setStatus('error')
+      setErrorMsg('Vui lòng nhập đầy đủ Tên, IP và Port!')
+      return
+    }
+
     setStatus('connecting')
-    setTimeout(() => {
+    setErrorMsg('')
+
+    try {
+      const serverUrl = `http://${bootstrapIp}:${port}`
+      await socketService.connect(serverUrl, username.trim(), parseInt(port))
       setStatus('connected')
+      // Chuyển trang sau 800ms
       setTimeout(() => navigate('/chat'), 800)
-    }, 1500)
+    } catch (err: any) {
+      setStatus('error')
+      setErrorMsg(err?.message || 'Không thể kết nối tới server')
+    }
   }
 
   return (
@@ -66,7 +84,7 @@ export default function JoinNetworkPage() {
               {/* Bootstrap Server IP */}
               <div className="space-y-2">
                 <label className="text-xs font-semibold text-primary uppercase tracking-wider ml-1" htmlFor="bootstrap_ip">
-                  Địa chỉ IP Bootstrap Server
+                  Máy chủ Trung tâm (Tracker) - IP
                 </label>
                 <div className="group relative flex items-center">
                   <span className="material-symbols-outlined absolute left-4 text-outline group-focus-within:text-primary transition-colors text-xl">dns</span>
@@ -84,7 +102,7 @@ export default function JoinNetworkPage() {
               {/* Port */}
               <div className="space-y-2">
                 <label className="text-xs font-semibold text-primary uppercase tracking-wider ml-1" htmlFor="port">
-                  Số cổng (Port)
+                  Máy chủ Trung tâm (Tracker) - Port
                 </label>
                 <div className="group relative flex items-center">
                   <span className="material-symbols-outlined absolute left-4 text-outline group-focus-within:text-primary transition-colors text-xl">settings_input_component</span>
@@ -115,16 +133,17 @@ export default function JoinNetworkPage() {
               <div className="flex items-center gap-3 px-3 py-2 bg-surface-container-low rounded-lg">
                 <div className="relative flex items-center justify-center">
                   <div className={`absolute w-2.5 h-2.5 rounded-full blur-[4px] animate-pulse ${
-                    status === 'connected' ? 'bg-green-400' : 'bg-primary'
+                    status === 'connected' ? 'bg-green-400' : status === 'error' ? 'bg-red-400' : 'bg-primary'
                   }`}></div>
                   <div className={`w-2 h-2 rounded-full relative z-10 ${
-                    status === 'connected' ? 'bg-green-400' : 'bg-primary'
+                    status === 'connected' ? 'bg-green-400' : status === 'error' ? 'bg-red-400' : 'bg-primary'
                   }`}></div>
                 </div>
-                <span className="text-sm text-on-surface-variant font-medium">
+                <span className={`text-sm font-medium ${status === 'error' ? 'text-red-400' : 'text-on-surface-variant'}`}>
                   {status === 'idle' && 'Sẵn sàng kết nối...'}
                   {status === 'connecting' && 'Đang tìm kiếm peers...'}
                   {status === 'connected' && 'Kết nối thành công!'}
+                  {status === 'error' && (errorMsg || 'Lỗi kết nối')}
                 </span>
               </div>
             </div>

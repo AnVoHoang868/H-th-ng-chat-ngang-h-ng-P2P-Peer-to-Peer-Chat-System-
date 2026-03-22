@@ -1,32 +1,94 @@
 // src/shared/types.ts
 
-// Định nghĩa cấu trúc của một Peer
-export interface IPeer {
-    id: string;        // ID duy nhất của peer (ví dụ: socket.id)
-    username: string;  // Tên hiển thị
-    ip: string;        // Địa chỉ IP
-    port: number;      // Cổng lắng nghe
+// Định nghĩa các loại thông điệp (Message Types) trong hệ thống
+export enum MessageType {
+    REGISTER = "REGISTER",
+    DISCOVERY_REQ = "DISCOVERY_REQ",
+    DISCOVERY_RES = "DISCOVERY_RES",
+    HEARTBEAT = "HEARTBEAT",
+    CHAT_PRIVATE = "CHAT_PRIVATE",
+    ACK_RECEIVE = "ACK_RECEIVE",
+    GROUP_CREATE = "GROUP_CREATE",
+    GROUP_JOIN = "GROUP_JOIN",
+    GROUP_LEAVE = "GROUP_LEAVE",
+    CHAT_GROUP = "CHAT_GROUP",
+    ERROR = "ERROR",
+    NODE_OFFLINE = "NODE_OFFLINE"
 }
 
-// Các loại sự kiện giao tiếp giữa các thành phần
-export enum SocketEvents {
-    // Client <-> Bootstrap Server
-    REGISTER_PEER = 'REGISTER_PEER',
-    UNREGISTER_PEER = 'UNREGISTER_PEER',
-    PEER_LIST_UPDATE = 'PEER_LIST_UPDATE',
-    
-    // Peer <-> Peer
-    DIRECT_MESSAGE = 'DIRECT_MESSAGE',
-    DIRECT_MESSAGE_ACK = 'DIRECT_MESSAGE_ACK',
-    GROUP_MESSAGE = 'GROUP_MESSAGE',
-    BROADCAST_MESSAGE = 'BROADCAST_MESSAGE'
+export enum ErrorCode {
+    PEER_NOT_FOUND = "PEER_NOT_FOUND",
+    GROUP_NOT_FOUND = "GROUP_NOT_FOUND",
+    UNAUTHORIZED = "UNAUTHORIZED",
+    CONNECTION_LOST = "CONNECTION_LOST",
+    PAYLOAD_INVALID = "PAYLOAD_INVALID"
 }
 
-// Cấu trúc tin nhắn Chat 1-1
-export interface IDirectMessage {
-    id: string;        // ID tin nhắn (để dùng cho ACK)
+// Cấu trúc của một Peer
+export interface PeerInfo {
+    id: string;
+    username: string;
+    ip: string;
+    port: number;
+    status: "ONLINE" | "OFFLINE";
+}
+
+// ---------------------------------------------------------
+// DATA CONTRACT (VỎ BỌC CHUNG CHO MỌI TIN NHẮN)
+// ---------------------------------------------------------
+export interface BaseMessage<T = any> {
+    version: "1.0";
+    type: MessageType;
     senderId: string;
+    timestamp: number;
+    messageId: string;
+    payload: T;
+}
+
+// ---------------------------------------------------------
+// CÁC PAYLOAD CỤ THỂ
+// ---------------------------------------------------------
+
+export interface RegisterPayload {
+    username: string;
+    port: number;
+    ip?: string;
+}
+
+export interface DiscoveryResPayload {
+    peers: PeerInfo[];
+}
+
+export interface HeartbeatPayload {
+    status: "ONLINE";
+}
+
+export interface NodeOfflinePayload {
+    offlinePeerId: string;
+}
+
+export interface ChatPrivatePayload {
     receiverId: string;
     content: string;
-    timestamp: number;
+}
+
+export interface AckPayload {
+    originalMessageId: string;
+    status: "SUCCESS" | "FAILED";
+}
+
+export interface ChatGroupPayload {
+    groupId: string;
+    content: string;
+}
+
+export interface GroupActionPayload {
+    groupId: string;
+    groupName?: string;
+    memberIds: string[];
+}
+
+export interface ErrorPayload {
+    code: ErrorCode;
+    details: string;
 }
