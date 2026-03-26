@@ -6,6 +6,7 @@ import { Server, Socket as ServerSocket } from 'socket.io';
 import cors from 'cors';
 import { PeerInfo, MessageType, BaseMessage, ChatPrivatePayload, RegisterPayload, DiscoveryResPayload } from '../shared/types';
 import * as crypto from 'crypto';
+import { registerPeerGroupHandlers } from './groupHandler';
 
 // -------------------------------------------------------------------------
 // THIẾT LẬP THÔNG SỐ PEER
@@ -85,3 +86,8 @@ bootstrapClient.on(MessageType.DISCOVERY_RES, (msg: BaseMessage<DiscoveryResPayl
     console.log(`\n[📡] Peer list updated: ${knownPeers.length} online.`);
 });
 
+// Tạo reference object cho knownPeers để groupHandler luôn có danh sách mới nhất
+const knownPeersRef = { get peers() { return knownPeers; } };
+
+// Đăng ký các handler nhóm (tách file riêng) — truyền peerServer để nhận tin P2P trực tiếp
+registerPeerGroupHandlers(bootstrapClient, peerServer, myPeerInfo, knownPeersRef, activeConnections);

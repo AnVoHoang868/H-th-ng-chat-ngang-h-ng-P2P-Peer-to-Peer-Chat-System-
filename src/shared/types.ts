@@ -92,3 +92,18 @@ export interface ErrorPayload {
     code: ErrorCode;
     details: string;
 }
+
+// Thông tin nhóm lưu trữ trên server
+export interface GroupInfo {
+    groupId: string;
+    groupName: string;
+    memberIds: string[];
+    createdBy: string;
+}
+
+// Payload thông báo khi thành viên rời nhóm
+export interface GroupLeaveNotifyPayload {
+    groupId: string;
+    peerId: string;
+    username: string;
+}

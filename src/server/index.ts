@@ -3,8 +3,9 @@ import express from 'express';
 import { createServer } from 'http';
 import { Server, Socket } from 'socket.io';
 import cors from 'cors';
-import { PeerInfo, MessageType, BaseMessage, RegisterPayload, DiscoveryResPayload } from '../shared/types';
+import { PeerInfo, MessageType, BaseMessage, RegisterPayload, DiscoveryResPayload, GroupInfo } from '../shared/types';
 import * as crypto from 'crypto';
+import { registerGroupHandlers, cleanupPeerFromGroups } from './groupHandler';
 
 // Cấu hình Express
 const app = express();
@@ -23,6 +24,9 @@ const io = new Server(httpServer, {
 // Bộ nhớ đệm lưu danh sách Peers đang online
 const activePeers = new Map<string, PeerInfo>();
 
+// Khai báo biến lưu trữ nhóm
+const activeGroups = new Map<string, GroupInfo>();
+
 // Lắng nghe sự kiện khi có máy con (Peer) kết nối tới
 io.on('connection', (socket: Socket) => {
     console.log(`[+] Client connected: ${socket.id}`);
@@ -30,9 +34,9 @@ io.on('connection', (socket: Socket) => {
     // Khi máy con đăng ký tham gia mạng (xài chuẩn MessageContracts mới)
     socket.on(MessageType.REGISTER, (msg: BaseMessage<RegisterPayload>, callback) => {
         const payload = msg.payload;
-        
+
         const newPeer: PeerInfo = {
-            id: socket.id, 
+            id: socket.id,
             username: payload.username || `User_${socket.id.substring(0, 5)}`,
             ip: socket.handshake.address || "127.0.0.1",
             port: payload.port || 0,
@@ -45,7 +49,7 @@ io.on('connection', (socket: Socket) => {
 
         // Lấy danh sách nhưng trừ chính mình ra
         const currentPeersList = Array.from(activePeers.values()).filter(p => p.id !== socket.id);
-        
+
         // Gọi callback (Acknowledge)
         if (typeof callback === 'function') {
             callback({ success: true, peers: currentPeersList, selfId: socket.id });
@@ -70,6 +74,10 @@ io.on('connection', (socket: Socket) => {
         if (activePeers.has(socket.id)) {
             const peer = activePeers.get(socket.id);
             console.log(`[-] Peer ${peer?.username} disconnected`);
+
+            // Cleanup nhóm trước khi xóa peer
+            cleanupPeerFromGroups(io, socket.id, activePeers, activeGroups);
+
             activePeers.delete(socket.id);
 
             // Gửi message cập nhật danh sách cho các peer còn lại
@@ -86,6 +94,9 @@ io.on('connection', (socket: Socket) => {
             io.emit(MessageType.DISCOVERY_RES, broadcastMsg);
         }
     });
+
+    // Đăng ký các handler nhóm (tách file riêng)
+    registerGroupHandlers(io, socket, activePeers, activeGroups);
 });
 
 const PORT = process.env.PORT || 4000;

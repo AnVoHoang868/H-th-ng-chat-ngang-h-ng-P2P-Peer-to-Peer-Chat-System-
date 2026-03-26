@@ -65,6 +65,10 @@ class SocketService {
     return this._status === 'connected' && this.socket?.connected === true
   }
 
+  getSocket(): Socket | null {
+    return this.socket
+  }
+
   // -----------------------------------------------------------------------
   // CONNECT — Kết nối tới Bootstrap Server và đăng ký peer
   // -----------------------------------------------------------------------
