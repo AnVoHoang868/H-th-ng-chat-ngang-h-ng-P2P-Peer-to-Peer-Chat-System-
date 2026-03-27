@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>P2P Chat - Direct Messages</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary": "#c7c6ca",
+              "error-container": "#93000a",
+              "inverse-primary": "#3f4cda",
+              "on-surface-variant": "#c6c5d7",
+              "surface-container-highest": "#343538",
+              "surface-tint": "#bec2ff",
+              "on-secondary": "#2f3033",
+              "error": "#ffb4ab",
+              "surface-variant": "#343538",
+              "surface-container": "#1f1f23",
+              "surface-dim": "#121316",
+              "surface": "#121316",
+              "on-secondary-container": "#b9b8bc",
+              "surface-container-high": "#292a2d",
+              "surface-bright": "#38393c",
+              "on-error-container": "#ffdad6",
+              "primary-fixed-dim": "#bec2ff",
+              "secondary-fixed-dim": "#c7c6ca",
+              "secondary-fixed": "#e3e2e6",
+              "on-primary-fixed": "#000569",
+              "tertiary-container": "#727578",
+              "on-background": "#e3e2e6",
+              "tertiary": "#c4c7ca",
+              "surface-container-lowest": "#0d0e11",
+              "primary-fixed": "#e0e0ff",
+              "on-primary-container": "#fffdff",
+              "inverse-surface": "#e3e2e6",
+              "inverse-on-surface": "#2f3033",
+              "tertiary-fixed-dim": "#c4c7ca",
+              "on-tertiary-fixed": "#191c1e",
+              "tertiary-fixed": "#e1e3e6",
+              "on-tertiary-fixed-variant": "#44474a",
+              "on-tertiary-container": "#fcfdff",
+              "background": "#121316",
+              "primary-container": "#5865f2",
+              "on-surface": "#e3e2e6",
+              "outline-variant": "#454655",
+              "secondary-container": "#48494c",
+              "on-secondary-fixed": "#1a1b1e",
+              "on-primary": "#000da4",
+              "on-tertiary": "#2d3133",
+              "on-error": "#690005",
+              "surface-container-low": "#1a1b1e",
+              "primary": "#bec2ff",
+              "outline": "#8f8fa0",
+              "on-primary-fixed-variant": "#222fc2",
+              "on-secondary-fixed-variant": "#46474a"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface h-screen flex overflow-hidden">
+<!-- SideNavBar (from JSON) -->
+<aside class="h-screen w-64 border-none bg-slate-900/80 backdrop-blur-xl shadow-2xl shadow-indigo-950/20 flex flex-col h-full py-4 space-y-2 font-inter text-sm tracking-tight shrink-0 hidden md:flex">
+<!-- Brand Header -->
+<div class="px-6 py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-indigo-500 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-lg" style="font-variation-settings: 'FILL' 1;">hub</span>
+</div>
+<div>
+<h1 class="text-indigo-200 font-bold tracking-widest uppercase text-xs">P2P Connect</h1>
+<p class="text-[10px] text-indigo-400 opacity-80 uppercase tracking-tighter">Online</p>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<nav class="flex-1 px-3 space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 transition-colors active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px]">grade</span>
+<span>Starred</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 transition-colors active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+<span>Channels</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 transition-colors active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px]">group</span>
+<span>Direct Messages</span>
+</a>
+<!-- Active Tab: DMs -->
+<a class="flex items-center gap-3 px-4 py-2 bg-slate-800 text-indigo-200 rounded-lg relative before:absolute before:left-0 before:w-1 before:h-6 before:bg-indigo-400 before:rounded-r-full active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px]">alternate_email</span>
+<span>DMs</span>
+</a>
+</nav>
+<!-- Footer User Info -->
+<div class="px-4 py-4 mt-auto bg-slate-950/50 flex items-center gap-3">
+<div class="relative">
+<img alt="User Profile" class="w-10 h-10 rounded-full border border-indigo-500/30" data-alt="Close up profile photo of a professional male" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKB6APNy29-vt4JgHA_DxsR6OaV4zZGHQiYly05hfqB-N8GhqFdV0meRfqc8DMT6bDARAg1BJtZ3LZulgJStKFcwq7rOxPFvyeKQEjP7jFiz5BFIi-9EkkYWw10H_Vf6G3EcZydTDan5TLUxfOqqTNUbceJHPnLwcjRT1_nlFZzZAZ_TKhmRtR8ispgg1BtySnsFLfZ0RiIG5R4PxlW7T0BpvLCr56LojTn6E_szSciJPjJLEl8oBcz8aSXudKnT0lxwYgc2AqNkY"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-indigo-400 border-2 border-slate-950 rounded-full"></div>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-xs font-bold text-slate-200 truncate">Satoshi_N</p>
+<p class="text-[10px] text-slate-500 truncate">0x71C...32f1</p>
+</div>
+<button class="text-slate-500 hover:text-indigo-400 transition-colors">
+<span class="material-symbols-outlined text-lg">settings</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 bg-surface">
+<!-- TopNavBar (from JSON logic) -->
+<header class="w-full h-16 sticky top-0 z-40 bg-slate-950 flex items-center justify-between px-6 w-full max-w-none">
+<div class="flex items-center gap-8">
+<span class="text-xl font-black text-indigo-400 tracking-tighter">P2P Chat</span>
+<nav class="hidden md:flex items-center gap-6 font-inter text-sm font-medium">
+<a class="text-slate-400 hover:text-slate-200 transition-colors active:opacity-80" href="#">Home</a>
+<a class="text-slate-400 hover:text-slate-200 transition-colors active:opacity-80" href="#">Servers</a>
+<a class="text-slate-400 hover:text-slate-200 transition-colors active:opacity-80" href="#">Explore</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<!-- Search Bar Context -->
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm">search</span>
+<input class="bg-surface-container-high border-none text-sm rounded-xl pl-10 pr-4 py-2 w-64 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-600" placeholder="Search conversations..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-indigo-300 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-indigo-300 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-indigo-300 transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+</div>
+</header>
+<!-- DM Management Content -->
+<div class="flex-1 overflow-y-auto p-6 lg:p-10 space-y-8 max-w-5xl mx-auto w-full">
+<!-- Hero Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="space-y-1">
+<h2 class="text-3xl font-black tracking-tight text-white font-headline">Messages</h2>
+<p class="text-on-surface-variant text-sm font-medium">Manage your peer-to-peer secure encryptions.</p>
+</div>
+<button class="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-br from-primary-fixed-dim to-primary-container text-on-primary-fixed font-bold rounded-xl shadow-lg shadow-indigo-900/20 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">add_comment</span>
+<span>Start New DM</span>
+</button>
+</div>
+<!-- ID Search / Filter Area -->
+<div class="bg-surface-container-low p-4 rounded-xl flex items-center gap-4">
+<div class="flex-1 relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">fingerprint</span>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg pl-12 pr-4 py-3 text-sm focus:ring-1 focus:ring-primary/40 transition-shadow" placeholder="Enter Peer ID (e.g. 0x...) to start a chat" type="text"/>
+</div>
+<button class="bg-surface-container-highest px-4 py-3 rounded-lg text-on-surface hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+<!-- List of Conversations -->
+<div class="space-y-3">
+<!-- Conversation Item 1: Connected -->
+<div class="group flex items-center gap-4 p-4 bg-surface-container-low hover:bg-surface-container-high rounded-xl cursor-pointer transition-all">
+<div class="relative shrink-0">
+<img alt="Peer Avatar" class="w-14 h-14 rounded-xl object-cover" data-alt="Headshot of a smiling man with a beard" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXMTL-Z2UTIoXfZShaTgKBndijwrszrgfvWSCn-NMrfBo8-Oa30H7SxX0R1GKzHY9rDVfEr5dJ6Ad3kNFO5iN6g_b6UWBzLuzQQf2GmX4eltAR-q1ok0daC-kpRMyJIkhg2pGDGY7-GzXJdnMc4uRFbERuhmouhsQ2PDF9ZLT_Gyw6HzCRUpoYHpDWFuUuHTmhPHe9SAIcFqwDDc3ycyqiOI4E4yNnXQ27JRBhf_UycHt1FaEraU_FK1BE1JUzKO-TMBjzY58sncA"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-primary rounded-full border-4 border-surface-container-low shadow-[0_0_8px_rgba(190,194,255,0.4)]"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between mb-0.5">
+<h3 class="font-bold text-on-surface truncate">Vitalik_E</h3>
+<span class="text-[10px] text-slate-500 font-label tracking-wider uppercase">2m ago</span>
+</div>
+<p class="text-sm text-slate-400 truncate pr-8">Hey, did you check the latest block updates on the mainnet?</p>
+<div class="flex items-center gap-3 mt-2">
+<span class="px-2 py-0.5 rounded text-[10px] bg-primary/10 text-primary font-bold tracking-wide uppercase">Connected</span>
+<span class="text-[10px] text-slate-600 font-mono">0x492...88a2</span>
+</div>
+</div>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-slate-500 hover:text-white">more_vert</span>
+</div>
+</div>
+<!-- Conversation Item 2: Syncing -->
+<div class="group flex items-center gap-4 p-4 bg-surface-container-low hover:bg-surface-container-high rounded-xl cursor-pointer transition-all">
+<div class="relative shrink-0">
+<img alt="Peer Avatar" class="w-14 h-14 rounded-xl object-cover" data-alt="Portrait of a woman with braided hair" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjD6TeRBvFOCVnSpwqdHrC4K-7mvvLIqgBs8rLKjaZFLYv7rfXvtSqiOVUAIshFORSDQk_vosRxNMVMe8ON46mToEc9W7_OHiovF2Vdn8yddUx1RqJ2Ve4dG7RUUf3gbUlfu5kOxl4PPYOH5mcx3NMfqp-9P_WZZKX58kBJcy5SOkGRSZm_zWs9Y6FF0r3kJLECGoDBR9_WVKhHGV2PZaISmWqwzaNqyl0Eqxk69EvSJ5_ZbRngJR6QsIIVuM2-J3tQhbtdK8B09M"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-amber-400 rounded-full border-4 border-surface-container-low animate-pulse"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between mb-0.5">
+<h3 class="font-bold text-on-surface truncate">Alice_Vault</h3>
+<span class="text-[10px] text-slate-500 font-label tracking-wider uppercase">1h ago</span>
+</div>
+<p class="text-sm text-slate-500 italic truncate pr-8">The multi-sig transaction is pending your approval.</p>
+<div class="flex items-center gap-3 mt-2">
+<span class="px-2 py-0.5 rounded text-[10px] bg-amber-400/10 text-amber-400 font-bold tracking-wide uppercase">Syncing</span>
+<span class="text-[10px] text-slate-600 font-mono">0x12b...f991</span>
+</div>
+</div>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-slate-500 hover:text-white">more_vert</span>
+</div>
+</div>
+<!-- Conversation Item 3: Offline -->
+<div class="group flex items-center gap-4 p-4 bg-surface-container-low hover:bg-surface-container-high rounded-xl cursor-pointer transition-all grayscale-[0.5]">
+<div class="relative shrink-0">
+<div class="w-14 h-14 rounded-xl bg-surface-container-highest flex items-center justify-center text-slate-500">
+<span class="material-symbols-outlined text-3xl">person</span>
+</div>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-slate-600 rounded-full border-4 border-surface-container-low"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between mb-0.5">
+<h3 class="font-bold text-slate-300 truncate">Deep_State</h3>
+<span class="text-[10px] text-slate-500 font-label tracking-wider uppercase">Yesterday</span>
+</div>
+<p class="text-sm text-slate-500 truncate pr-8">Attached the whitepaper for the new P2P protocol.</p>
+<div class="flex items-center gap-3 mt-2">
+<span class="px-2 py-0.5 rounded text-[10px] bg-slate-800 text-slate-500 font-bold tracking-wide uppercase">Offline</span>
+<span class="text-[10px] text-slate-600 font-mono">0xbb2...9012</span>
+</div>
+</div>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-slate-500 hover:text-white">more_vert</span>
+</div>
+</div>
+<!-- Conversation Item 4: Connected -->
+<div class="group flex items-center gap-4 p-4 bg-surface-container-low hover:bg-surface-container-high rounded-xl cursor-pointer transition-all">
+<div class="relative shrink-0">
+<img alt="Peer Avatar" class="w-14 h-14 rounded-xl object-cover" data-alt="Portrait of a man with glasses and casual attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARokGHLzPPvs9RQcY0ywIwFeWuwksny6HEgWxlbEri6iQe1eWtT696HUDJ4zunIxJKIcVZwZgqrDN51UrtB2FQka2lSBNVzVQbbfZLhH3eS5wh-nOs3Kz92bSz9siNbZQsEzeTjJOUpFUzlHCjxVhKjTnEiFBwvgD0j98nXJG39vQN0WYzPS7WmMV7Cw6gNrtm5WjcoaYAwlxu2QwtHdO4oJImVliYf7Ds0PD64ezRskJca1xHzyTWYql8zRtuV70YjXV1QsfIjmA"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-primary rounded-full border-4 border-surface-container-low shadow-[0_0_8px_rgba(190,194,255,0.4)]"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between mb-0.5">
+<h3 class="font-bold text-on-surface truncate">Node_Runner_88</h3>
+<span class="text-[10px] text-slate-500 font-label tracking-wider uppercase">2d ago</span>
+</div>
+<p class="text-sm text-slate-400 truncate pr-8">Your node is perfectly synced. 100% uptime achieved this week.</p>
+<div class="flex items-center gap-3 mt-2">
+<span class="px-2 py-0.5 rounded text-[10px] bg-primary/10 text-primary font-bold tracking-wide uppercase">Connected</span>
+<span class="text-[10px] text-slate-600 font-mono">0x992...22f1</span>
+</div>
+</div>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-slate-500 hover:text-white">more_vert</span>
+</div>
+</div>
+</div>
+<!-- Empty State Suggestion / Invite -->
+<div class="bg-indigo-950/20 rounded-2xl p-8 flex flex-col items-center text-center space-y-4 border border-indigo-500/10">
+<div class="w-16 h-16 bg-surface-container-high rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-indigo-400 text-3xl">share</span>
+</div>
+<div class="max-w-xs">
+<h4 class="text-lg font-bold text-indigo-200">Connect with others</h4>
+<p class="text-sm text-slate-400">Share your ID link to start encrypted conversations with peers globally.</p>
+</div>
+<button class="bg-surface-container-high hover:bg-surface-container-highest px-6 py-2 rounded-xl text-indigo-400 text-sm font-bold transition-all border border-indigo-500/20">
+                    Copy My Peer ID
+                </button>
+</div>
+</div>
+<!-- Mobile Bottom NavBar (from JSON logic) -->
+<nav class="md:hidden h-16 bg-slate-950 border-t border-slate-900 flex items-center justify-around px-2 sticky bottom-0">
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined">grade</span>
+<span class="text-[10px] font-medium">Starred</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="text-[10px] font-medium">Channels</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-indigo-400" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">alternate_email</span>
+<span class="text-[10px] font-medium">DMs</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-medium">Settings</span>
+</a>
+</nav>
+</main>
+</body></html>

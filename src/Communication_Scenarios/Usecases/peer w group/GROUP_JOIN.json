@@ -1,0 +1,18 @@
+10. Usecase: Thêm thành viên vào nhóm (GROUP_JOIN)
+
+Mô tả: Thêm một peer mới vào nhóm đã có.
+
+Luồng: Peer A -> Các thành viên hiện tại trong nhóm (để họ cập nhật danh sách).
+{
+    "version": "1.0",
+    "type": "GROUP_JOIN",
+    "senderId": "peer_01",
+    "timestamp": 1710752100,
+    "messageId": "msg_203",
+    "payload": {
+        "groupId": "group_doan_01",
+        "memberIds": [
+            "peer_04"
+        ]
+    }
+}

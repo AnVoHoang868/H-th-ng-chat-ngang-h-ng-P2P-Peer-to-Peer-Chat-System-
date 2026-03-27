@@ -1,0 +1,17 @@
+6. Usecase: Gửi tin nhắn trực tiếp (CHAT_PRIVATE)
+
+
+Mô tả: Người dùng gửi tin nhắn trực tiếp tới một peer khác qua mạng.
+
+Luồng: Peer A -> Peer B.
+{
+    "version": "1.0",
+    "type": "CHAT_PRIVATE",
+    "senderId": "peer_01",
+    "timestamp": 1710751000,
+    "messageId": "msg_101",
+    "payload": {
+        "receiverId": "peer_02",
+        "content": "Ông check lại đoạn code xử lý socket nhé!"
+    }
+}

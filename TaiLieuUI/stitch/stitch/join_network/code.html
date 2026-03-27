@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>P2P Chat - Join Network</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary": "#c7c6ca",
+              "error-container": "#93000a",
+              "inverse-primary": "#3f4cda",
+              "on-surface-variant": "#c6c5d7",
+              "surface-container-highest": "#343538",
+              "surface-tint": "#bec2ff",
+              "on-secondary": "#2f3033",
+              "error": "#ffb4ab",
+              "surface-variant": "#343538",
+              "surface-container": "#1f1f23",
+              "surface-dim": "#121316",
+              "surface": "#121316",
+              "on-secondary-container": "#b9b8bc",
+              "surface-container-high": "#292a2d",
+              "surface-bright": "#38393c",
+              "on-error-container": "#ffdad6",
+              "primary-fixed-dim": "#bec2ff",
+              "secondary-fixed-dim": "#c7c6ca",
+              "secondary-fixed": "#e3e2e6",
+              "on-primary-fixed": "#000569",
+              "tertiary-container": "#727578",
+              "on-background": "#e3e2e6",
+              "tertiary": "#c4c7ca",
+              "surface-container-lowest": "#0d0e11",
+              "primary-fixed": "#e0e0ff",
+              "on-primary-container": "#fffdff",
+              "inverse-surface": "#e3e2e6",
+              "inverse-on-surface": "#2f3033",
+              "tertiary-fixed-dim": "#c4c7ca",
+              "on-tertiary-fixed": "#191c1e",
+              "tertiary-fixed": "#e1e3e6",
+              "on-tertiary-fixed-variant": "#44474a",
+              "on-tertiary-container": "#fcfdff",
+              "background": "#121316",
+              "primary-container": "#5865f2",
+              "on-surface": "#e3e2e6",
+              "outline-variant": "#454655",
+              "secondary-container": "#48494c",
+              "on-secondary-fixed": "#1a1b1e",
+              "on-primary": "#000da4",
+              "on-tertiary": "#2d3133",
+              "on-error": "#690005",
+              "surface-container-low": "#1a1b1e",
+              "primary": "#bec2ff",
+              "outline": "#8f8fa0",
+              "on-primary-fixed-variant": "#222fc2",
+              "on-secondary-fixed-variant": "#46474a"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: linear-gradient(135deg, rgba(26, 27, 30, 0.8), rgba(13, 14, 17, 0.9));
+            backdrop-filter: blur(30px);
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #bec2ff 0%, #5865f2 100%);
+        }
+        .ghost-border {
+            border: 1px solid rgba(69, 70, 85, 0.2);
+        }
+        .ghost-border:focus-within {
+            border-color: rgba(190, 194, 255, 0.4);
+            box-shadow: 0 0 15px rgba(190, 194, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-white antialiased overflow-hidden h-screen flex items-center justify-center">
+<!-- Suppressing TopNavBar and SideNavBar for focused transactional journey -->
+<!-- Background Decoration Elements -->
+<div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+<div class="absolute -top-[10%] -left-[5%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px]"></div>
+<div class="absolute -bottom-[10%] -right-[5%] w-[35%] h-[35%] bg-primary-container/10 rounded-full blur-[120px]"></div>
+</div>
+<!-- Main Content Canvas -->
+<main class="relative z-10 w-full max-w-lg px-6">
+<div class="flex flex-col items-center mb-10 text-center">
+<div class="mb-4 bg-surface-container-high p-4 rounded-xl shadow-2xl">
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="hub">hub</span>
+</div>
+<h1 class="text-display-sm font-black tracking-tighter text-on-surface mb-2">P2P Chat</h1>
+<p class="text-label-sm uppercase tracking-[0.2em] text-outline">Decentralized Protocol v1.0</p>
+</div>
+<!-- Registration Card -->
+<div class="glass-panel p-10 rounded-xl shadow-2xl border border-outline-variant/10">
+<div class="space-y-8">
+<div class="text-center">
+<h2 class="text-xl font-bold text-on-surface">Join Network</h2>
+<p class="text-body-md text-on-surface-variant mt-1">Configure your entry node to start chatting.</p>
+</div>
+<form class="space-y-6">
+<!-- Username Field -->
+<div class="space-y-2">
+<label class="text-label-sm font-semibold text-primary uppercase tracking-wider ml-1" for="username">Username</label>
+<div class="group relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-outline group-focus-within:text-primary transition-colors text-xl" data-icon="person">person</span>
+<input class="w-full pl-12 pr-4 py-3.5 bg-surface-container-high rounded-lg ghost-border focus:ring-0 text-on-surface placeholder:text-outline/50 transition-all outline-none" id="username" placeholder="eg. Satoshi" type="text"/>
+</div>
+</div>
+<!-- Bootstrap Server IP -->
+<div class="space-y-2">
+<label class="text-label-sm font-semibold text-primary uppercase tracking-wider ml-1" for="bootstrap_ip">Bootstrap Server IP/Address</label>
+<div class="group relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-outline group-focus-within:text-primary transition-colors text-xl" data-icon="dns">dns</span>
+<input class="w-full pl-12 pr-4 py-3.5 bg-surface-container-high rounded-lg ghost-border focus:ring-0 text-on-surface placeholder:text-outline/50 transition-all outline-none" id="bootstrap_ip" placeholder="127.0.0.1" type="text"/>
+</div>
+</div>
+<!-- Port Number -->
+<div class="space-y-2">
+<label class="text-label-sm font-semibold text-primary uppercase tracking-wider ml-1" for="port">Port Number</label>
+<div class="group relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-outline group-focus-within:text-primary transition-colors text-xl" data-icon="settings_input_component">settings_input_component</span>
+<input class="w-full pl-12 pr-4 py-3.5 bg-surface-container-high rounded-lg ghost-border focus:ring-0 text-on-surface placeholder:text-outline/50 transition-all outline-none" id="port" placeholder="8080" type="number"/>
+</div>
+</div>
+<!-- Action Button -->
+<button class="w-full primary-gradient text-on-primary-container font-bold py-4 rounded-lg shadow-lg hover:shadow-primary-container/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2 group" type="submit">
+<span>Connect to Network</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+<!-- Validation / Status Area -->
+<div class="pt-4 mt-4 border-t border-outline-variant/10">
+<div class="flex items-center gap-3 px-4 py-3 bg-surface-container-low rounded-lg">
+<div class="relative flex items-center justify-center">
+<div class="absolute w-2.5 h-2.5 bg-primary rounded-full blur-[4px] animate-pulse"></div>
+<div class="w-2 h-2 bg-primary rounded-full relative z-10"></div>
+</div>
+<span class="text-body-md text-on-surface-variant font-medium">Connecting to peers...</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Links -->
+<div class="mt-8 flex justify-center gap-6">
+<a class="text-label-sm text-outline hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-label-sm text-outline hover:text-primary transition-colors" href="#">Documentation</a>
+<a class="text-label-sm text-outline hover:text-primary transition-colors" href="#">v1.2.4-stable</a>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,21 @@
+8. Usecase: Tạo nhóm (GROUP_CREATE)
+
+Mô tả: Peer khởi tạo một nhóm chat mới.
+
+Luồng: Peer A -> Các Peer được mời (hoặc gửi qua Server nếu Server quản lý metadata nhóm).
+{
+    "version": "1.0",
+    "type": "GROUP_CREATE",
+    "senderId": "peer_01",
+    "timestamp": 1710752000,
+    "messageId": "msg_201",
+    "payload": {
+        "groupId": "group_doan_01",
+        "groupName": "Team Đồ Án P2P",
+        "memberIds": [
+            "peer_01",
+            "peer_02",
+            "peer_03"
+        ]
+    }
+}
