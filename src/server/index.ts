@@ -12,7 +12,7 @@ import {
 } from './peerHandler';
 import { registerGroupHandlers } from './groupHandler';
 
-// Cấu hình Express
+// Cấu hình Express 123
 const app = express();
 app.use(cors());
 app.use(express.json());
