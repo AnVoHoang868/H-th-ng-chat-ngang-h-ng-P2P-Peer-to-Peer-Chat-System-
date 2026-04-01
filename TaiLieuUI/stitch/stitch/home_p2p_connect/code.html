@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary": "#c7c6ca",
+              "error-container": "#93000a",
+              "inverse-primary": "#3f4cda",
+              "on-surface-variant": "#c6c5d7",
+              "surface-container-highest": "#343538",
+              "surface-tint": "#bec2ff",
+              "on-secondary": "#2f3033",
+              "error": "#ffb4ab",
+              "surface-variant": "#343538",
+              "surface-container": "#1f1f23",
+              "surface-dim": "#121316",
+              "surface": "#121316",
+              "on-secondary-container": "#b9b8bc",
+              "surface-container-high": "#292a2d",
+              "surface-bright": "#38393c",
+              "on-error-container": "#ffdad6",
+              "primary-fixed-dim": "#bec2ff",
+              "secondary-fixed-dim": "#c7c6ca",
+              "secondary-fixed": "#e3e2e6",
+              "on-primary-fixed": "#000569",
+              "tertiary-container": "#727578",
+              "on-background": "#e3e2e6",
+              "tertiary": "#c4c7ca",
+              "surface-container-lowest": "#0d0e11",
+              "primary-fixed": "#e0e0ff",
+              "on-primary-container": "#fffdff",
+              "inverse-surface": "#e3e2e6",
+              "inverse-on-surface": "#2f3033",
+              "tertiary-fixed-dim": "#c4c7ca",
+              "on-tertiary-fixed": "#191c1e",
+              "tertiary-fixed": "#e1e3e6",
+              "on-tertiary-fixed-variant": "#44474a",
+              "on-tertiary-container": "#fcfdff",
+              "background": "#121316",
+              "primary-container": "#5865f2",
+              "on-surface": "#e3e2e6",
+              "outline-variant": "#454655",
+              "secondary-container": "#48494c",
+              "on-secondary-fixed": "#1a1b1e",
+              "on-primary": "#000da4",
+              "on-tertiary": "#2d3133",
+              "on-error": "#690005",
+              "surface-container-low": "#1a1b1e",
+              "primary": "#bec2ff",
+              "outline": "#8f8fa0",
+              "on-primary-fixed-variant": "#222fc2",
+              "on-secondary-fixed-variant": "#46474a"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary/30">
+<!-- TopNavBar -->
+<nav class="w-full h-16 sticky top-0 z-40 bg-slate-950 flex items-center justify-between px-6 max-w-none">
+<div class="flex items-center gap-8">
+<span class="text-xl font-black text-indigo-400 tracking-tighter">P2P Chat</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="font-inter text-sm font-medium text-indigo-400 border-b-2 border-indigo-400 pb-1" href="#">Home</a>
+<a class="font-inter text-sm font-medium text-slate-400 hover:text-slate-200 transition-colors" href="#">Servers</a>
+<a class="font-inter text-sm font-medium text-slate-400 hover:text-slate-200 transition-colors" href="#">Explore</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex items-center bg-surface-container-high px-3 py-1.5 rounded-xl">
+<span class="material-symbols-outlined text-outline text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm placeholder:text-outline w-32 lg:w-48" placeholder="Search..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="material-symbols-outlined text-slate-400 hover:text-indigo-300 transition-colors">notifications</button>
+<button class="material-symbols-outlined text-slate-400 hover:text-indigo-300 transition-colors">settings</button>
+<img alt="User Avatar" class="w-8 h-8 rounded-full border border-outline-variant/20 object-cover" data-alt="User profile picture in circular frame" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBalVB8Pe7Kbbat7QAcEsKYumjxnuT-uUlE_qJNMTolUPN1ghx4mp048o01_UdQ1sYP0Fk8HIlwLZYY4XP22RwE--88jCAb0Mp33u9gVdiom1MSeqhOcCP2IJfOhDp2WqNAKWqygfzLD-gsjGCfN14-jj50y_eqS-HlPFO1pecpdTH5KznqgINCCcBmG0FekZ740EwXmhkI7rJghxvlKVtOiDQ84PBiduTOmohdN7ngox8bNFEGPoBpBqqAluGDuM8zwkgFLDvwvbs"/>
+</div>
+</div>
+</nav>
+<main class="flex min-h-[calc(100vh-64px)] overflow-hidden">
+<!-- SideNavBar (Desktop Only) -->
+<aside class="hidden md:flex flex-col h-full py-4 space-y-2 bg-slate-900/80 backdrop-blur-xl h-screen w-64 border-none shadow-2xl shadow-indigo-950/20 sticky top-16">
+<div class="px-4 mb-4">
+<div class="flex items-center gap-3 p-3 bg-slate-950/50 rounded-xl">
+<img alt="User Profile" class="w-10 h-10 rounded-xl object-cover" data-alt="Abstract brand symbol logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUyPoDRrbHhnRJg9ZdKONwrAzBUQzN5mQdb3r-PLgx4pfCWQkbwpg2xFitXmvelMW0tf59bZcihMXarisEPDMQB6wdh0iDEQj94uqNt4o-5OZWF52HgF0WP4rm_RhtnfCy3ZAzW7hbI-2da-unCN_Eg2BkYa8WxR4nNpZX9IkngWEloWZ6JP5wGz0-WzVsfXeS7HZwrSDx6Lr5xvmKnlNHCmwFZf_s6lO5kIekRAa2vZrnLfv1ndIRTvvi33zyaRMGB3A56qx4UW8"/>
+<div class="flex flex-col">
+<span class="text-indigo-200 font-bold tracking-widest uppercase text-xs">P2P Connect</span>
+<span class="text-indigo-400 font-inter text-[10px] tracking-tight">Online</span>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1 px-2">
+<a class="flex items-center gap-3 px-4 py-2 bg-slate-800 text-indigo-200 rounded-lg relative before:absolute before:left-0 before:w-1 before:h-6 before:bg-indigo-400 before:rounded-r-full font-inter text-sm tracking-tight active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="grade">grade</span>
+<span>Starred</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 transition-colors font-inter text-sm tracking-tight active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span>Channels</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 transition-colors font-inter text-sm tracking-tight active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Direct Messages</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 transition-colors font-inter text-sm tracking-tight active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="alternate_email">alternate_email</span>
+<span>DMs</span>
+</a>
+</nav>
+<div class="px-4 py-4">
+<div class="bg-indigo-500/10 rounded-xl p-4 border border-indigo-500/20">
+<p class="text-indigo-200 text-xs font-medium mb-2">Upgrade to Pro</p>
+<button class="w-full bg-indigo-500 text-white text-xs font-bold py-2 rounded-lg hover:bg-indigo-400 transition-all">Go Premium</button>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<section class="flex-1 overflow-y-auto bg-surface-container-lowest">
+<!-- Hero Section -->
+<div class="relative px-6 py-16 md:py-24 lg:px-12 flex flex-col items-center text-center max-w-6xl mx-auto">
+<div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(88,101,242,0.08),transparent_70%)]"></div>
+<span class="inline-block px-4 py-1.5 rounded-full bg-primary-container/20 text-primary text-[10px] font-bold tracking-[0.2em] uppercase mb-6 border border-primary/20">
+                    Network Status: Operational
+                </span>
+<h1 class="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter text-on-surface mb-6 leading-[0.95] max-w-4xl">
+                    P2P Connect: Direct Communication, <span class="text-transparent bg-clip-text bg-gradient-to-br from-primary to-surface-tint">No Boundaries</span>
+</h1>
+<p class="text-lg md:text-xl text-on-surface-variant font-medium max-w-2xl mb-10 leading-relaxed">
+                    A peer-to-peer chat system for secure and decentralized messaging. 
+                    Ownership belongs to the users, not the platform.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="px-8 py-4 rounded-xl bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold text-base shadow-xl shadow-primary-container/20 hover:scale-[1.02] active:scale-95 transition-all">
+                        Join Network
+                    </button>
+<button class="px-8 py-4 rounded-xl bg-surface-container-high text-on-surface font-semibold text-base border border-outline-variant/20 hover:bg-surface-container-highest transition-all">
+                        Read Documentation
+                    </button>
+</div>
+<div class="mt-20 w-full">
+<div class="bg-surface-container-low rounded-[2rem] p-4 border border-outline-variant/10 shadow-3xl">
+<img alt="Application UI Preview" class="w-full h-auto rounded-[1.5rem] shadow-2xl object-cover" data-alt="Clean futuristic interface showing encrypted chat nodes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJ10c2pTGLQN-8enIjModF4fQF0yujauqioo43s7dUJIVb1cdmOfMHxddR9aIHGRtm8E-_Y-0VUz2168_uDVlp8qa6FACkgi7bpr2u0d4oAATtJJXrmDJVlCMrSM9vgxsUbYywOEiLT-7A47cYUSacG1_B_j3lMctJT_OOrwI3auqPjbtrsqIhKh4OkR4Tt9fEBI7YPoFS9jfHtcaVvgn-9-b6koJ0jZRjgj8UtBGpFeDS5LLjk2Lx39k9sbBeBt1AzotXtbVygcA"/>
+</div>
+</div>
+</div>
+<!-- Features Bento Grid -->
+<div class="px-6 py-24 max-w-6xl mx-auto">
+<div class="mb-12">
+<h2 class="text-label-sm uppercase tracking-[0.3em] text-primary font-bold mb-4">Core Architecture</h2>
+<h3 class="text-3xl font-bold text-on-surface tracking-tight">Why P2P?</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Feature 1 -->
+<div class="md:col-span-2 group relative bg-surface-container-low rounded-3xl p-8 overflow-hidden transition-all hover:bg-surface-container-high">
+<div class="absolute top-0 right-0 p-8">
+<span class="material-symbols-outlined text-primary text-5xl opacity-20 group-hover:scale-110 transition-transform" data-icon="dns">dns</span>
+</div>
+<div class="relative z-10 h-full flex flex-col justify-end">
+<h4 class="text-2xl font-bold text-on-surface mb-3">No Central Server</h4>
+<p class="text-on-surface-variant leading-relaxed max-w-md">
+                                Eliminate the middleman. Your data moves directly between devices using encrypted pathways, ensuring zero single-point-of-failure and absolute privacy.
+                            </p>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="group relative bg-surface-container-low rounded-3xl p-8 overflow-hidden transition-all hover:bg-surface-container-high">
+<div class="mb-6">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="verified">verified</span>
+</div>
+</div>
+<h4 class="text-xl font-bold text-on-surface mb-3">Reliable Delivery</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                            Advanced gossip protocols ensure your messages reach their destination even through unstable network mesh conditions.
+                        </p>
+</div>
+<!-- Feature 3 -->
+<div class="group relative bg-surface-container-low rounded-3xl p-8 overflow-hidden transition-all hover:bg-surface-container-high">
+<div class="mb-6">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="groups">groups</span>
+</div>
+</div>
+<h4 class="text-xl font-bold text-on-surface mb-3">Group Conversations</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                            Secure multi-party communication using decentralized identity management. No phone number required.
+                        </p>
+</div>
+<!-- Feature 4 -->
+<div class="md:col-span-2 group relative bg-gradient-to-br from-primary-container/20 to-surface-container-low rounded-3xl p-8 border border-primary/10 overflow-hidden transition-all hover:border-primary/30">
+<div class="flex flex-col md:flex-row items-center gap-8">
+<div class="flex-1">
+<h4 class="text-2xl font-bold text-on-surface mb-3">End-to-End Infinity</h4>
+<p class="text-on-surface-variant leading-relaxed">
+                                    Every node in the network acts as a relay, creating a robust, global communication fabric that scales with its users.
+                                </p>
+</div>
+<div class="w-32 h-32 flex-shrink-0 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="security" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="px-6 py-12 border-t border-outline-variant/10 bg-surface">
+<div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="text-xl font-black text-indigo-400 tracking-tighter">P2P Connect</span>
+<p class="text-on-surface-variant text-xs font-medium">© 2024 P2P Decentralized Systems. All rights reserved.</p>
+</div>
+<div class="flex gap-8 text-on-surface-variant text-sm font-medium">
+<a class="hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms</a>
+<a class="hover:text-primary transition-colors" href="#">GitHub</a>
+<a class="hover:text-primary transition-colors" href="#">Status</a>
+</div>
+</div>
+</footer>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-slate-950 flex items-center justify-around px-4 z-50 border-t border-outline-variant/10">
+<a class="flex flex-col items-center gap-1 text-indigo-400" href="#">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="text-[10px] font-medium">Chats</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="text-[10px] font-medium">Explore</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</nav>
+</body></html>

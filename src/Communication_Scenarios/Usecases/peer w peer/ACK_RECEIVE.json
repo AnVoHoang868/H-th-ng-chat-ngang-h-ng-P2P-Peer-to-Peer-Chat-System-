@@ -1,0 +1,12 @@
+Usecase 3: Truyền tin đáng tin cậy (Xác nhận đã nhận)
+Để đảm bảo tin nhắn phải được truyền thành công tới peer đích, Peer B sau khi nhận được thông điệp trên, lập tức phản hồi lại gói tin ACK_RECEIVE: {
+    "version": "1.0",
+    "type": "ACK_RECEIVE",
+    "senderId": "peer_02",
+    "timestamp": 1710752051,
+    "messageId": "msg_ack456",
+    "payload": {
+        "originalMessageId": "msg_abc123",
+        "status": "SUCCESS"
+    }
+}

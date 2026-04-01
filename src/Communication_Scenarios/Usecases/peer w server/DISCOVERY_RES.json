@@ -1,0 +1,28 @@
+3. Usecase: Server trả về danh sách Peer (DISCOVERY_RES)
+Mô tả: Server phản hồi danh sách các peer đang online.
+Luồng: Bootstrap Server -> Peer.
+{
+    "version": "1.0",
+    "type": "DISCOVERY_RES",
+    "senderId": "server_bootstrap",
+    "timestamp": 1710750011,
+    "messageId": "msg_003",
+    "payload": {
+        "peers": [
+            {
+                "id": "peer_02",
+                "username": "HoangK21",
+                "ip": "192.168.1.10",
+                "port": 9000,
+                "status": "ONLINE"
+            },
+            {
+                "id": "peer_03",
+                "username": "NamDev",
+                "ip": "192.168.1.15",
+                "port": 9001,
+                "status": "ONLINE"
+            }
+        ]
+    }
+}

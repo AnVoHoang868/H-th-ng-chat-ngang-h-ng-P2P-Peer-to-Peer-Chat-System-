@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
     "target": "es2022",
+    "lib": [
+      "ES2022",
+      "DOM"
+    ],
     "module": "commonjs",
     "rootDir": "./src",
     "outDir": "./dist",
@@ -10,5 +14,10 @@
     "skipLibCheck": true,
     "resolveJsonModule": true
   },
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "client"
+  ]
 }

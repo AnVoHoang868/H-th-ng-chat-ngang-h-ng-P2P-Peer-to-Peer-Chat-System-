@@ -1,4 +1,14 @@
+<<<<<<< HEAD
 .DS_Store
 **/.DS_Store
 node_modules
 node_modules/
+=======
+node_modules/
+dist/
+build/
+.env
+.npm
+*.log
+.DS_Store
+>>>>>>> origin/feature/group-e2ee

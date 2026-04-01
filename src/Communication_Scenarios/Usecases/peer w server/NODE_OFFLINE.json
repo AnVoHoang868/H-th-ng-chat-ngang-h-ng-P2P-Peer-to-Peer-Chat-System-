@@ -1,0 +1,13 @@
+5. Usecase: Thông báo một Peer đã rời mạng (NODE_OFFLINE)
+Mô tả: Khi Server phát hiện một Peer mất kết nối (không gửi Heartbeat), nó cập nhật trạng thái và broadcast cho các Peer khác.
+Luồng: Bootstrap Server -> Các Peer đang online.
+{
+    "version": "1.0",
+    "type": "NODE_OFFLINE",
+    "senderId": "server_bootstrap",
+    "timestamp": 1710750100,
+    "messageId": "msg_005",
+    "payload": {
+        "offlinePeerId": "peer_03"
+    }
+}

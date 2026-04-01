@@ -1,0 +1,11 @@
+2. Usecase: Yêu cầu danh sách Peer (DISCOVERY_REQ)
+Mô tả: Peer mới tham gia yêu cầu Server trả về danh sách các peer khác trong mạng.
+Luồng: Peer -> Bootstrap Server.
+{
+    "version": "1.0",
+    "type": "DISCOVERY_REQ",
+    "senderId": "peer_01",
+    "timestamp": 1710750010,
+    "messageId": "msg_002",
+    "payload": {}
+}

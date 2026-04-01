@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>P2P Chat - Channels</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #343538; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #454655; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "secondary": "#c7c6ca",
+                "error-container": "#93000a",
+                "inverse-primary": "#3f4cda",
+                "on-surface-variant": "#c6c5d7",
+                "surface-container-highest": "#343538",
+                "surface-tint": "#bec2ff",
+                "on-secondary": "#2f3033",
+                "error": "#ffb4ab",
+                "surface-variant": "#343538",
+                "surface-container": "#1f1f23",
+                "surface-dim": "#121316",
+                "surface": "#121316",
+                "on-secondary-container": "#b9b8bc",
+                "surface-container-high": "#292a2d",
+                "surface-bright": "#38393c",
+                "on-error-container": "#ffdad6",
+                "primary-fixed-dim": "#bec2ff",
+                "secondary-fixed-dim": "#c7c6ca",
+                "secondary-fixed": "#e3e2e6",
+                "on-primary-fixed": "#000569",
+                "tertiary-container": "#727578",
+                "on-background": "#e3e2e6",
+                "tertiary": "#c4c7ca",
+                "surface-container-lowest": "#0d0e11",
+                "primary-fixed": "#e0e0ff",
+                "on-primary-container": "#fffdff",
+                "inverse-surface": "#e3e2e6",
+                "inverse-on-surface": "#2f3033",
+                "tertiary-fixed-dim": "#c4c7ca",
+                "on-tertiary-fixed": "#191c1e",
+                "tertiary-fixed": "#e1e3e6",
+                "on-tertiary-fixed-variant": "#44474a",
+                "on-tertiary-container": "#fcfdff",
+                "background": "#121316",
+                "primary-container": "#5865f2",
+                "on-surface": "#e3e2e6",
+                "outline-variant": "#454655",
+                "secondary-container": "#48494c",
+                "on-secondary-fixed": "#1a1b1e",
+                "on-primary": "#000da4",
+                "on-tertiary": "#2d3133",
+                "on-error": "#690005",
+                "surface-container-low": "#1a1b1e",
+                "primary": "#bec2ff",
+                "outline": "#8f8fa0",
+                "on-primary-fixed-variant": "#222fc2",
+                "on-secondary-fixed-variant": "#46474a"
+              },
+              fontFamily: {
+                "headline": ["Inter"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface text-on-surface h-screen overflow-hidden flex flex-col">
+<!-- Top Navigation Shell -->
+<header class="w-full h-16 sticky top-0 z-40 bg-slate-950 flex items-center justify-between px-6 w-full max-w-none font-inter text-sm font-medium">
+<div class="flex items-center gap-8">
+<span class="text-xl font-black text-indigo-400 tracking-tighter uppercase">P2P Chat</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-400 hover:text-slate-200 transition-colors" href="#">Home</a>
+<a class="text-indigo-400 border-b-2 border-indigo-400 pb-1" href="#">Servers</a>
+<a class="text-slate-400 hover:text-slate-200 transition-colors" href="#">Explore</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<input class="bg-surface-container-high border-none rounded-xl py-1.5 px-4 text-xs focus:ring-1 focus:ring-primary outline-none w-64" placeholder="Search..." type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-1.5 text-lg text-outline">search</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="text-slate-400 hover:text-indigo-300 transition-colors active:opacity-80"><span class="material-symbols-outlined">notifications</span></button>
+<button class="text-slate-400 hover:text-indigo-300 transition-colors active:opacity-80"><span class="material-symbols-outlined">settings</span></button>
+<button class="text-slate-400 hover:text-indigo-300 transition-colors active:opacity-80"><span class="material-symbols-outlined">help</span></button>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-highest">
+<img class="w-full h-full object-cover" data-alt="User Avatar Profile Image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGFx7gMp9mrLUCKTPmpKWYLfOnaGmRNC4mahxB4wRxu3eLZ82vBNqBeEY8a63l8apgF-1QGim89pqpDvY-DIbrRIXRZjJBaWlblivVVcsSU7AlgKSOAy_wOVtNo9iP265TCeeSszZFQTPSb2Yg1J7MipwmDIrgJFRyrWIe_CtR04BpWtUBAytLERKF3QELwX0omRbJDuv7oCHtEFCcZLM6HCnYTfxZX91Apjy0a5mvPoKkiWSP0LmWwFokUA-Ikrv2G1NYg-G9cj4"/>
+</div>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- Left Sidebar Shell (SideNavBar) -->
+<aside class="h-screen w-64 border-none bg-slate-900/80 backdrop-blur-xl shadow-2xl shadow-indigo-950/20 flex flex-col font-inter text-sm tracking-tight overflow-hidden">
+<div class="p-4 flex items-center gap-3 bg-slate-950/50">
+<div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container">hub</span>
+</div>
+<div>
+<h2 class="text-indigo-200 font-bold tracking-widest uppercase text-xs">P2P Connect</h2>
+<p class="text-[10px] text-primary flex items-center gap-1"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Online</p>
+</div>
+</div>
+<nav class="flex-1 py-4 space-y-1 overflow-y-auto custom-scrollbar px-2">
+<div class="px-3 mb-2">
+<span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Favorites</span>
+</div>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-lg">grade</span>
+<span>Starred</span>
+</a>
+<div class="px-3 mt-6 mb-2 flex items-center justify-between">
+<span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Channels</span>
+<span class="material-symbols-outlined text-xs text-slate-500 cursor-pointer hover:text-indigo-400">add</span>
+</div>
+<!-- ACTIVE NAV ITEM -->
+<a class="flex items-center gap-3 px-4 py-2 bg-slate-800 text-indigo-200 rounded-lg relative before:absolute before:left-0 before:w-1 before:h-6 before:bg-indigo-400 before:rounded-r-full transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-lg">chat_bubble</span>
+<span>Development</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined text-lg">public</span>
+<span>Global</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined text-lg">tag</span>
+<span>General</span>
+</a>
+<div class="px-3 mt-6 mb-2 flex items-center justify-between">
+<span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Direct Messages</span>
+<span class="material-symbols-outlined text-xs text-slate-500 cursor-pointer">settings</span>
+</div>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined text-lg">group</span>
+<span>Direct Messages</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined text-lg">alternate_email</span>
+<span>DMs</span>
+</a>
+</nav>
+<!-- Bottom Sidebar Profile -->
+<div class="p-4 bg-slate-950/50 flex items-center justify-between mt-auto">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img class="w-8 h-8 rounded-full border border-slate-700" data-alt="Alex profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBY42RZVZzBriAPSnfKJEymGk69lhJdZ8UIE-mgl54tvnBSqEDtu1wAR0OUmnEy--dAL9qQI7cKH86x8dU44Zu3XRcXZ8YiyEJfymmNiyZ3ef6aQzVjF0EGRxaa-b6eHnRYUR2zuEz9ZoVOl64MWlDvydGdjGO0ffRDvroqtSh7assIzEQf0a8ENZCFemdengRIgaoI5J9ZVqpJRmEZWuSy2wlp_Eq8DEBnW3QrUgO8pQ5tvmOgRNjvwwOZ56CXVxP4Zjz9oSn1o48"/>
+<div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-primary rounded-full border-2 border-slate-900 shadow-[0_0_8px_rgba(190,194,255,0.6)]"></div>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-200">Alex</p>
+<p class="text-[10px] text-slate-500">#4412</p>
+</div>
+</div>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-lg text-slate-500 hover:text-slate-300 cursor-pointer">mic</span>
+<span class="material-symbols-outlined text-lg text-slate-500 hover:text-slate-300 cursor-pointer">headphones</span>
+</div>
+</div>
+</aside>
+<!-- Main Chat Area -->
+<main class="flex-1 bg-surface flex flex-col relative overflow-hidden">
+<!-- Channel Header -->
+<div class="h-12 flex items-center justify-between px-6 bg-surface-container-low shadow-sm z-10">
+<div class="flex items-center gap-2">
+<span class="text-outline">#</span>
+<h1 class="font-bold text-sm tracking-tight">Development</h1>
+<span class="mx-2 w-[1px] h-4 bg-outline-variant/30"></span>
+<p class="text-xs text-on-surface-variant font-normal truncate max-w-md">Project discussions, code reviews, and deployment logs.</p>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-xl text-outline hover:text-on-surface cursor-pointer">push_pin</span>
+<span class="material-symbols-outlined text-xl text-outline hover:text-on-surface cursor-pointer">group_add</span>
+<span class="material-symbols-outlined text-xl text-outline hover:text-on-surface cursor-pointer">inbox</span>
+</div>
+</div>
+<!-- Messages Flow -->
+<section class="flex-1 overflow-y-auto p-6 space-y-8 custom-scrollbar">
+<!-- Message Group -->
+<div class="flex gap-4 group">
+<img class="w-10 h-10 rounded-xl mt-1 object-cover" data-alt="Jordan avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtB8xU63bSb7spFvu8XMRDLAyuDS03sqMj0W5_JhrETiEwOm8y97dFk9TUH8HqpZ9jHKbYbn7xbS1Pd0NhS0qxOAtwiqrfZb628masF1uCd4aVzGBtWXYobzBVtXp7K22FhFzvnyuHiVjlWkgYrXL0_0zZgIwPwnLkugpERRHHovHkXpvSeCrEy7qgbMUQt-LxhoC8tYVnYcyZ891BpP0eSiCsveOzBl5nVenv3qD7rG3OE2nE7Wb1HWdMmQGMdUXvhjL5IY2pgos"/>
+<div class="flex-1 min-w-0">
+<div class="flex items-baseline gap-2 mb-1">
+<span class="text-sm font-bold text-primary">Jordan</span>
+<span class="text-[10px] text-outline font-medium tracking-wide">Today at 10:24 AM</span>
+</div>
+<div class="bg-surface-variant p-4 rounded-xl rounded-tl-sm max-w-2xl text-sm leading-relaxed text-on-surface-variant">
+                            Hey everyone, I've just pushed the latest updates to the peer discovery module. Can someone take a quick look at the PR? 
+                        </div>
+</div>
+</div>
+<div class="flex gap-4 group">
+<img class="w-10 h-10 rounded-xl mt-1 object-cover" data-alt="Sarah avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqZ3xGG9qqFpTe21Db9IA8CWK4BhR3xiAkUQ8OzN2msInKOXeJDWAQ9bi25a5MclSV_HBCX0hv8MJ6dlolu_cB02nefA1rnFzYZsQKNTb0tHwPAGB2Fi-Kgxn1UQvHhALK-Htz_NYOBOED2YRTUjy1jEbvMzWfn-wWKVHM9MzcVYKjXGU8HNwweDr-GozIWQO_98Z-Jb_59df-NeUxM3Hv-Jt2iSfZC8_kiRg051pdeCxim48IQpNAuF_c27JFhcIUoIg8RjA9q7o"/>
+<div class="flex-1 min-w-0">
+<div class="flex items-baseline gap-2 mb-1">
+<span class="text-sm font-bold text-tertiary">Sarah</span>
+<span class="text-[10px] text-outline font-medium tracking-wide">Today at 10:26 AM</span>
+</div>
+<div class="bg-surface-variant p-4 rounded-xl rounded-tl-sm max-w-2xl text-sm leading-relaxed text-on-surface-variant">
+                            On it! I'll check the crypto signatures implementation specifically. The last merge had some issues with the handshake latency.
+                        </div>
+</div>
+</div>
+<!-- Date Divider -->
+<div class="relative flex items-center py-4">
+<div class="flex-grow border-t border-outline-variant/20"></div>
+<span class="flex-shrink mx-4 text-[10px] font-bold text-outline uppercase tracking-[0.2em]">New Messages</span>
+<div class="flex-grow border-t border-outline-variant/20"></div>
+</div>
+<div class="flex gap-4 group justify-end">
+<div class="flex-1 min-w-0 flex flex-col items-end">
+<div class="flex items-baseline gap-2 mb-1">
+<span class="text-[10px] text-outline font-medium tracking-wide">Today at 10:45 AM</span>
+<span class="text-sm font-bold text-primary-fixed-dim">Alex (You)</span>
+</div>
+<div class="bg-primary-container p-4 rounded-xl rounded-tr-sm max-w-2xl text-sm leading-relaxed text-on-primary-container shadow-lg shadow-primary-container/20">
+                            Thanks Sarah. I've also added the new emoji support icons. Checking the build status now. 🚀
+                        </div>
+</div>
+<img class="w-10 h-10 rounded-xl mt-1 object-cover border-2 border-primary-container" data-alt="Alex avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZvrx0HKE-_Ml2VL67QKufI28s9ULKq-oZuLOGybUi0dB9uhhgPlwv8l7Qbmsey1vIK_e5ZLuG_KIMXpeC7kodllD36A2p3yUP5rtKvpDy29K_6-nbdDVWQ8dU2L3oRy6xaYnWiJ6kc3FBFCBxS7z2RetM4l7fdGRcxuw5TAW8CvmdYpK0qZNBBU9hdbVeeXfQGhtJo_qRBW6Z2r-1QkqLz5NzuR-303F-7zhPFVJ8V-pD49LO07fR_8ZGXbCjJH-Jy18ld2aRJgc"/>
+</div>
+<!-- Bento-style System Card -->
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/10 flex flex-col md:flex-row gap-6 items-center">
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-xl">terminal</span>
+<h3 class="font-bold text-sm">Deployment Success</h3>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">System core v2.4.0 is now live on the staging network. All nodes reported 100% synchronization.</p>
+</div>
+<div class="grid grid-cols-2 gap-2 w-full md:w-auto">
+<div class="bg-surface-container-high p-3 rounded-lg text-center">
+<div class="text-[10px] text-outline uppercase font-bold mb-1">Latency</div>
+<div class="text-primary font-bold">14ms</div>
+</div>
+<div class="bg-surface-container-high p-3 rounded-lg text-center">
+<div class="text-[10px] text-outline uppercase font-bold mb-1">Nodes</div>
+<div class="text-primary font-bold">1.2k</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Chat Input Container -->
+<footer class="p-6 pt-0">
+<div class="bg-surface-container-high rounded-xl p-2 focus-within:ring-1 focus-within:ring-primary-container/50 transition-all shadow-xl">
+<div class="flex items-end gap-2 px-2">
+<button class="p-2 text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined">add_circle</span>
+</button>
+<textarea class="flex-1 bg-transparent border-none focus:ring-0 text-sm py-2 max-h-48 custom-scrollbar resize-none text-on-surface placeholder:text-outline" placeholder="Message #Development" rows="1"></textarea>
+<div class="flex items-center gap-1 pb-1">
+<button class="p-2 text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined">sentiment_satisfied</span>
+</button>
+<button class="p-2 text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined">gif_box</span>
+</button>
+<button class="bg-primary-container text-on-primary-container p-2 rounded-lg hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+</footer>
+</main>
+<!-- Right Sidebar (Peers List) -->
+<aside class="hidden lg:flex w-64 bg-surface-container-low flex-col font-inter">
+<div class="p-6 h-full overflow-y-auto custom-scrollbar">
+<div class="mb-8">
+<h3 class="text-[10px] font-bold text-outline uppercase tracking-widest mb-4">Online — 4</h3>
+<div class="space-y-4">
+<div class="flex items-center gap-3 group cursor-pointer">
+<div class="relative">
+<img class="w-8 h-8 rounded-full grayscale group-hover:grayscale-0 transition-all" data-alt="User Jordan profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1kdklkFVIWwwcp_C4s6jCbuBPUB5bb_Svn14DuY_XwbVnSZQAjETd7jaen3tkj7i5bpSNxA_tQ_61FbJOKIYzTQR6v1wGbAN1zmQ0OwzrmnW_HnNn9u_Sq7K9OFbO2fkXy0DICoZQx0K3QeiFMQtWi5SMhe1n1s_SWGl3wZhVA4CqgVczY2odczaWeEI4UEmUb5Plulb1NngrbP57hYcmOfDUvWNrEVRyvj-sGEs7z-scFeahruka2SWGHQgahJnPuLhGqCpFd4A"/>
+<div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-primary rounded-full border-2 border-surface-container-low"></div>
+</div>
+<span class="text-sm font-medium text-on-surface-variant group-hover:text-primary transition-colors">Jordan</span>
+</div>
+<div class="flex items-center gap-3 group cursor-pointer">
+<div class="relative">
+<img class="w-8 h-8 rounded-full grayscale group-hover:grayscale-0 transition-all" data-alt="User Sarah profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVkHMb6Fl74ggWL6befIp5G_PJryuxNnK8LDe6P-Ids7LMlXNAMxE0jTsaGvRXhYZUoylZjQ8tJmo-zDbrdN5eBt0QCG4i6f6oCSwmQKVU_8BQezI2OKWKVA2exO_NVsVj3LA3XMNifzT4rQuqjn3kP50wbwbZoAukhUgTSJ3yxZ7a4VUYPvQsNwa2-u98NbH9kfM7OD6jInvkCAu2DdByhXSDBHDTbFa1wrtDLhyvxNQJfyJ2SxDVe4uaBnVBwSyyTSwa3vvvMFM"/>
+<div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-primary rounded-full border-2 border-surface-container-low"></div>
+</div>
+<span class="text-sm font-medium text-on-surface-variant group-hover:text-primary transition-colors">Sarah</span>
+</div>
+<div class="flex items-center gap-3 group cursor-pointer">
+<div class="relative">
+<img class="w-8 h-8 rounded-full grayscale group-hover:grayscale-0 transition-all" data-alt="User Mike profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3oG3Z3X_QiRMpsv3ns11d-LXjuO4_JiLXrEL6vvr7QlAZ0GR5jnNXr-bJQMg3QB0taWZxlNSKw6GT-wO_zaLPD3c4gI-jR1c3Uua5kThNWsISUPu58QbWe_t92rZYgESVKOAbsJ2Z5mcubHjWtzBz-1yWeOBHLTz5Su163i9rztyfi7cqXPE7QDj4R3e_SFZqFFx48zsYwZlAlGDIhEF1etbf1gV-zbXZmgMg2rdHq80O71QqJIqweCJYqujy8Vjp1DALZ_lgN3k"/>
+<div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-primary rounded-full border-2 border-surface-container-low"></div>
+</div>
+<span class="text-sm font-medium text-on-surface-variant group-hover:text-primary transition-colors">Mike.dev</span>
+</div>
+<div class="flex items-center gap-3 group cursor-pointer">
+<div class="relative">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-xs font-bold text-outline">BOT</div>
+<div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-primary rounded-full border-2 border-surface-container-low"></div>
+</div>
+<span class="text-sm font-medium text-on-surface-variant group-hover:text-primary transition-colors">LinterBot</span>
+</div>
+</div>
+</div>
+<div class="mb-8 opacity-40">
+<h3 class="text-[10px] font-bold text-outline uppercase tracking-widest mb-4">Offline — 12</h3>
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full grayscale" data-alt="Offline user 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcqXoto2h4MYoPxObA5glIf4NeXVdz_MM9yTQjnwCHaoxI0YIunErur8uTOiZ0fyN8Xri8-k_gW0IBhp1t_Aaonp3S2Y5Sn2yG0zeZlzyj1QHiEI-tMaiHwb9oWxNg5_ipJ44Sh3h4Q1yruSmEpHhP7NNUQ3XzghWoV8wjMBiB6DlXPlNbAMT7NtpdDF9er-fw6p2q5Ur2dwyQ82f9l2aqRTHt52eQt4DGRFQ7FD_FjwRNPDL_4RR5js564oI8I3e5Lx-Va1-U_pA"/>
+<span class="text-sm font-medium text-outline">Elena</span>
+</div>
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full grayscale" data-alt="Offline user 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWfkeHG9IkodGRflzaf0PQ3tBDhpW2gZMIgJDaunxC2ydOhyoRXMOQ2n4O_TXSgk1vex-dzg-CEplLt_rwZhoZ3IBn4pbAwkxXMcepZqGs6Q3j4XnA0Q5uDxZNtg6zVS9do1jphGpqOgsGRofSk_cL92gha6eHswdTQEENksgNzC8rp7RzLNVuCGffz6MQPIiBIUQfzTxp9O6pgga0tBD3Fv3bsMPVBuYq8fIQX-xxFWA6jepJDKAlF7O7Qq9okSLnLHXKwrB0ic0"/>
+<span class="text-sm font-medium text-outline">Marcus</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</body></html>
