@@ -4,6 +4,7 @@ import JoinNetworkPage from './pages/JoinNetworkPage'
 import HomePage from './pages/HomePage'
 import ChatPage from './pages/ChatPage'
 import DirectMessagesPage from './pages/DirectMessagesPage'
+import GroupChatPage from './pages/GroupChatPage'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route element={<AppLayout />}>
         <Route path="/chat" element={<ChatPage />} />
         <Route path="/messages" element={<DirectMessagesPage />} />
+        <Route path="/groups" element={<GroupChatPage />} />
       </Route>
     </Routes>
   )

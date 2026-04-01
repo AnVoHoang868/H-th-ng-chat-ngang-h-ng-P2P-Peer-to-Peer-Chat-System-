@@ -59,6 +59,21 @@ export default function SideNavBar({ activeChannel = 'Phát triển' }: SideNavB
         ))}
 
         <div className="px-3 mt-6 mb-2 flex items-center justify-between">
+          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">NHÓM CHAT</span>
+        </div>
+        <Link
+          to="/groups"
+          className={
+            location.pathname === '/groups'
+              ? 'flex items-center gap-3 px-4 py-2 bg-slate-800 text-indigo-200 rounded-lg relative before:absolute before:left-0 before:w-1 before:h-6 before:bg-indigo-400 before:rounded-r-full'
+              : 'flex items-center gap-3 px-4 py-2 text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 transition-colors rounded-lg'
+          }
+        >
+          <span className="material-symbols-outlined text-lg">groups</span>
+          <span>Nhóm chat</span>
+        </Link>
+
+        <div className="px-3 mt-6 mb-2 flex items-center justify-between">
           <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">TIN NHẮN TRỰC TIẾP</span>
           <span className="material-symbols-outlined text-xs text-slate-500 cursor-pointer">settings</span>
         </div>
