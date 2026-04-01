@@ -173,6 +173,7 @@ export function sendGroupMessage(
 
         // Ưu tiên 3: Tạo kết nối mới tới peer (chỉ khi peer còn ONLINE)
         const targetPeer = knownPeersRef.peers.find(p => p.id === memberId && p.status === 'ONLINE');
+
         if (targetPeer) {
             const { io: ioClient } = require('socket.io-client');
             const rawIp = targetPeer.ip;

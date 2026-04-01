@@ -70,6 +70,7 @@ class SocketService {
   private nodeOfflineListeners: NodeOfflineCallback[] = []
   private ackListeners: AckCallback[] = []
 
+
   get status(): ConnectionStatus {
     return this._status
   }
@@ -123,6 +124,7 @@ class SocketService {
 
       this._username = username
       this._trackerPort = port
+
       this.setStatus('connecting')
 
       console.log(`[SocketService] Connecting to Bootstrap Server: ${serverUrl}`)
@@ -311,6 +313,7 @@ class SocketService {
    * - Thiếu public key đích: gửi plaintext (tương thích bản không E2EE).
    */
   async sendPrivateMessage(receiverId: string, content: string): Promise<void> {
+
     if (!this._selfId) {
       console.warn('[SocketService] Cannot send message: Not registered yet')
       return
@@ -424,6 +427,7 @@ class SocketService {
 
   disconnect(): void {
     this.stopHeartbeat()
+
     if (this.socket) {
       this.socket.disconnect()
       this.socket = null
@@ -439,6 +443,7 @@ class SocketService {
     this.setStatus('disconnected')
     console.log('[SocketService] Disconnected from server and all peers.')
   }
+
 
   onPeerListUpdate(callback: PeerListCallback): () => void {
     this.peerListListeners.push(callback)
@@ -497,6 +502,7 @@ class SocketService {
       this.heartbeatTimer = null
     }
   }
+
 
   private setStatus(status: ConnectionStatus): void {
     this._status = status

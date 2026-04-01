@@ -33,7 +33,10 @@ export default function ChatPage() {
       // but status will show offline if we update activePeer object.
     })
 
+<<<<<<< HEAD
     // socketService đã giải mã E2EE (nếu có) — msg.payload.content là plaintext cho UI
+=======
+>>>>>>> 6f8cca7c26fb4f17c1d0d11e32957f5feb7d3297
     const unsubscribeMessages = socketService.onMessage((msg: BaseMessage<ChatPrivatePayload>) => {
       const senderInfo = socketService.peers.find(p => p.id === msg.senderId)
       const senderName = senderInfo ? senderInfo.username : 'Unknown'
@@ -42,7 +45,11 @@ export default function ChatPage() {
         id: msg.messageId,
         senderId: msg.senderId,
         senderName: senderName,
+<<<<<<< HEAD
         content: msg.payload.content ?? '',
+=======
+        content: msg.payload.content,
+>>>>>>> 6f8cca7c26fb4f17c1d0d11e32957f5feb7d3297
         time: new Date(msg.timestamp).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }),
         isMe: false,
       }
@@ -62,6 +69,7 @@ export default function ChatPage() {
     }
   }, [])
 
+<<<<<<< HEAD
   // sendPrivateMessage là async (ECDH + AES-GCM trước khi emit); chỉ append UI sau khi gửi thành công
   const handleSend = async () => {
     if (!inputValue.trim() || !activePeer) return
@@ -72,6 +80,12 @@ export default function ChatPage() {
       console.error('Gửi tin thất bại', e)
       return
     }
+=======
+  const handleSend = () => {
+    if (!inputValue.trim() || !activePeer) return
+
+    socketService.sendPrivateMessage(activePeer.id, inputValue)
+>>>>>>> 6f8cca7c26fb4f17c1d0d11e32957f5feb7d3297
 
     const newMsg: ChatMessage = {
       id: Date.now().toString(),

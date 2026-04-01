@@ -1,9 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 .DS_Store
 **/.DS_Store
 node_modules
 node_modules/
 =======
+=======
+>>>>>>> 6f8cca7c26fb4f17c1d0d11e32957f5feb7d3297
 node_modules/
 dist/
 build/
@@ -11,4 +14,7 @@ build/
 .npm
 *.log
 .DS_Store
+<<<<<<< HEAD
 >>>>>>> origin/feature/group-e2ee
+=======
+>>>>>>> 6f8cca7c26fb4f17c1d0d11e32957f5feb7d3297

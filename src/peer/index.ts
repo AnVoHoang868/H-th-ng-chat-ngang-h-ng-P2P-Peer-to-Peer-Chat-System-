@@ -72,12 +72,11 @@ app.use(cors());
 app.use(express.json());
 
 const httpServer = createServer(app);
-
 const peerServer = new Server(httpServer, { cors: { origin: '*' } });
-
 
 peerServer.on('connection', (socket: ServerSocket) => {
     console.log(`[+] P2P Connection established from another peer: ${socket.id}`);
+
     // Tin P2P trực tiếp: legacy có `content` plaintext; E2EE có `encryption: aes-gcm-v1` + ciphertext/iv (đồng bộ với client web).
     socket.on(MessageType.CHAT_PRIVATE, async (msg: BaseMessage<ChatPrivatePayload>, callback) => {
         let display = msg.payload.content ?? '';
